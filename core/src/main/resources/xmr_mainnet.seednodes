@@ -1,2 +1,10 @@
 # nodeaddress.onion:port [(@owner,@backup)]
-placeholder.onion:8000 (@placeholder)
+mercury65ubgxoqyriivozgfxijy2fbmgquy27ombgkg3tq7apipusyd.onion:1001(@anon0)
+venus25nokflkbt3dvapzr3jr54ohld2vxzft7ac7tkakifhs7kq6cid.onion:1002(@anon0)
+earth45n2zcjiemzvyvzfjrzatum7mduix3i725hycxdldaaye5ygkad.onion:1003(@anon0)
+mars3xchlaaghsk65fo5bg7drjxxulqng22jvsejqpuklrdcrwox5ryd.onion:1004(@anon1)
+jupitersdfoab6mg2slac2o2zyzsqcqrrralcsfgq47eib5s6s4r4nyd.onion:1005(@anon1)
+saturnpudurhewbfkrbge5h6awne4heb4y4yluskviixaihrqxmdcmqd.onion:1006(@anon1)
+uranusa653v6s6enpttiaoqxy534njy5immqdx2qzhattrafp24qitid.onion:1007(@anon0,@anon1)
+neptuned6o3pmiuzk7uej6f7mj5b6uypc2fxkjrhol4hfpr7jg5tllid.onion:1008(@anon0,@anon1)
+pluto6z66tumoedf567cyvtkf7utwm362xdv55d5d32dnlsfq7rrppad.onion:1009(@anon0,@anon1)
