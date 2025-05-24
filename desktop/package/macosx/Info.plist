@@ -11,10 +11,10 @@
         <string>1.1.1</string>
 
         <key>CFBundleExecutable</key>
-        <string>Haveno</string>
+        <string>Haveno-dawn</string>
 
         <key>CFBundleName</key>
-        <string>Haveno</string>
+        <string>Haveno-dawn</string>
 
         <key>CFBundleIdentifier</key>
         <string>io.haveno.CAT</string>
