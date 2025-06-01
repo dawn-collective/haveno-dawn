@@ -4,7 +4,7 @@ runtime-version: "23.08"
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.openjdk21
-command: /app/bin/Haveno
+command: /app/bin/Haveno-dawn
 modules:
   - name: openjdk
     buildsystem: simple
@@ -27,11 +27,11 @@ modules:
       - ls
       - pwd
       # TODO: consider switching from reading from a deb to reading from jpackage's image
-      - mv temp-*/binaries/haveno_*.deb haveno.deb
+      - mv temp-*/binaries/haveno-dawn_*.deb haveno.deb
       - ar x haveno.deb
       - tar xf data.tar.*
-      - cp -r opt/haveno/lib /app/lib
-      - install -D opt/haveno/bin/Haveno /app/bin/Haveno
+      - cp -r opt/haveno-dawn/lib /app/lib
+      - install -D opt/haveno-dawn/bin/Haveno-dawn /app/bin/Haveno-dawn
       - mkdir -p /app/share/icons/hicolor/128x128/apps/
       - mkdir -p /app/share/applications/
       - mkdir -p /app/share/metainfo/
