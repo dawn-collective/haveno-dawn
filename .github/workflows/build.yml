@@ -80,9 +80,9 @@ jobs:
             mkdir ${{ github.workspace }}/release-linux-flatpak
             mkdir ${{ github.workspace }}/release-linux-appimage
             mv desktop/build/temp-*/binaries/haveno-*.rpm ${{ github.workspace }}/release-linux-rpm/haveno-dawn-v${{ env.VERSION }}-linux-x86_64-installer.rpm
-            mv desktop/build/temp-*/binaries/haveno_*.deb ${{ github.workspace }}/release-linux-deb/haveno-dawn-v${{ env.VERSION }}-linux-x86_64-installer.deb
+            mv desktop/build/temp-*/binaries/haveno-*.deb ${{ github.workspace }}/release-linux-deb/haveno-dawn-v${{ env.VERSION }}-linux-x86_64-installer.deb
             mv desktop/build/temp-*/binaries/*.flatpak ${{ github.workspace }}/release-linux-flatpak/haveno-dawn-v${{ env.VERSION }}-linux-x86_64.flatpak
-            mv desktop/build/temp-*/binaries/haveno_*.AppImage ${{ github.workspace }}/release-linux-appimage/haveno-dawn-v${{ env.VERSION }}-linux-x86_64.AppImage
+            mv desktop/build/temp-*/binaries/haveno-*.AppImage ${{ github.workspace }}/release-linux-appimage/haveno-dawn-v${{ env.VERSION }}-linux-x86_64.AppImage
             cp desktop/build/temp-*/binaries/desktop-*.jar.SHA-256 ${{ github.workspace }}/release-linux-deb
             cp desktop/build/temp-*/binaries/desktop-*.jar.SHA-256 ${{ github.workspace }}/release-linux-rpm
             cp desktop/build/temp-*/binaries/desktop-*.jar.SHA-256 ${{ github.workspace }}/release-linux-appimage

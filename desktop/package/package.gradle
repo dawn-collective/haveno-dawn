@@ -399,7 +399,7 @@ task packageInstallers {
 
 
             // Define Flatpak-related properties
-            String flatpakManifestFile = 'package/linux/exchange.haveno.Haveno.yml'
+            String flatpakManifestFile = 'package/linux/exchange.haveno.Haveno-dawn.yml'
             String linuxDir = 'package/linux'
             String flatpakOutputDir = 'package/linux/build'
             String flatpakExportDir = "${binariesFolderPath}/fpexport"
@@ -419,9 +419,9 @@ task packageInstallers {
             // Copy the manifest to a new tmp one in the same place
             // and add a --filesystem=.local/share/${name} to the flatpak manifest
             def manifest = file(flatpakManifestFile)
-            def newManifest = file('exchange.haveno.Haveno.yaml')
-            newManifest.write(manifest.text.replace("- --share=network", "- --share=network\\n  - --filesystem=~/.local/share/${appNameAndVendor}:create"))
-            flatpakManifestFile = 'exchange.haveno.Haveno.yaml'
+            def newManifest = file('exchange.haveno.Haveno-dawn.yaml')
+            newManifest.write(manifest.text.replace("- --share=network", "- --share=network\n  - --filesystem=~/.local/share/${appNameAndVendor}:create"))
+            flatpakManifestFile = 'exchange.haveno.Haveno-dawn.yaml'
 
             // Command to build the Flatpak
             exec {
@@ -435,7 +435,7 @@ task packageInstallers {
 
             // Command to create the Flatpak bundle
             exec {
-                commandLine 'flatpak', 'build-bundle', flatpakExportDir, flatpakBundleFile, 'exchange.haveno.Haveno', '--runtime-repo=https://flathub.org/repo/flathub.flatpakrepo'
+                commandLine 'flatpak', 'build-bundle', flatpakExportDir, flatpakBundleFile, 'exchange.haveno.Haveno-dawn', '--runtime-repo=https://flathub.org/repo/flathub.flatpakrepo'
             }
 
             // delete the flatpak build directory
