@@ -17,7 +17,7 @@
         <string>Haveno-dawn</string>
 
         <key>CFBundleIdentifier</key>
-        <string>io.haveno.CAT</string>
+        <string>io.haveno-dawn.CAT</string>
 
         <key>CFBundleIconFile</key>
         <string>Haveno.icns</string>
