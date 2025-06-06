@@ -24,10 +24,26 @@ Haveno is an open-source, decentralized exchange platform built around Monero as
 - Fees set to **0.1% maker** and **0.5% taker** to cover server cost and maintain a self-sustaining network
 - Custom installation paths for side-by-side use with other networks
 - Reliable infrastructure for maximum availability
+- Debian package repository for easy installation and upgrades
 
 ## Installation
 
+Haveno-dawn currently supports three installation methods:
+
+#### Option 1: Download the latest release
+
 Haveno-dawn can be installed by [downloading the latest release](https://github.com/dawn-collective/haveno-dawn/releases) for your operating system.
+
+#### Option 2: Install via our Debian package repository
+
+```bash
+wget -O- https://raw.githubusercontent.com/dawn-collective/repository/gh-pages/public.key | sudo gpg --dearmor -o /usr/share/keyrings/dawn-collective-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/dawn-collective-archive-keyring.gpg] https://dawn-collective.github.io/repository stable main" | sudo tee /etc/apt/sources.list.d/dawn-collective.list
+sudo apt update
+sudo apt install haveno-dawn -y
+```
+
+#### Option 3: Compile from source
 
 You can also compile your own binaries [following these instructions](https://github.com/dawn-collective/haveno-dawn/blob/master/docs/installing.md).
 

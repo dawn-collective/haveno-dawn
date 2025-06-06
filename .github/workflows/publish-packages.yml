@@ -1,0 +1,134 @@
+name: Publish .deb to dawn-collective/packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        required: false
+        default: 'latest'
+
+permissions:
+  contents: write
+
+jobs:
+  publish-deb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y dpkg-dev apt-utils git-lfs curl jq
+
+      - name: Download .deb from haveno-dawn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: dawn-collective
+          REPO: haveno-dawn
+          TAG: ${{ github.event.inputs.release_tag }}
+        run: |
+          set -e
+          if [ "$TAG" = "latest" ]; then
+            TAG=$(curl -s https://api.github.com/repos/$OWNER/$REPO/releases/latest \
+                  | jq -r .tag_name)
+          fi
+          echo "Fetching release: $TAG"
+
+          ASSET_ID=$(curl -s \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            https://api.github.com/repos/$OWNER/$REPO/releases/tags/$TAG \
+            | jq '.assets[] | select(.name|endswith(".deb")) | .id')
+
+          [ -n "$ASSET_ID" ] || { echo "No .deb asset found"; exit 1; }
+
+          curl -L \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/octet-stream" \
+            https://api.github.com/repos/$OWNER/$REPO/releases/assets/$ASSET_ID \
+            -o haveno-dawn.deb
+
+      - name: Checkout Debian repo
+        uses: actions/checkout@v3
+        with:
+          repository: dawn-collective/packages
+          token:      ${{ secrets.REPO_PAT }}
+          fetch-depth: 0
+          lfs:         true
+          path:        packages
+          ref:         main
+
+      - name: Initialize Git LFS in repo
+        working-directory: packages
+        run: |
+          git lfs install --local
+
+      - name: Prepare main branch
+        working-directory: packages
+        run: |
+          # Ensure we're on main branch
+          git checkout main -- || git checkout --orphan main
+          # Clean the directory except .git
+          find . -mindepth 1 -not -path './.git*' -exec rm -rf {} + 2>/dev/null || true
+
+      - name: Copy .deb into pool/ with versioning and track via LFS
+        working-directory: packages
+        run: |
+          # Extract version from the .deb package
+          VERSION=$(dpkg-deb -f ../haveno-dawn.deb Version)
+          echo "Processing package version: $VERSION"
+          
+          # Create pool directory and copy the .deb with versioned filename
+          mkdir -p pool/main
+          cp ../haveno-dawn.deb "pool/main/haveno-dawn_${VERSION}_amd64.deb"
+          
+          # Track all .deb files with LFS
+          git lfs track "pool/main/haveno-dawn_*_amd64.deb"
+
+      - name: Rebuild Packages.gz & Release file
+        working-directory: packages
+        run: |
+          mkdir -p dists/stable/main/binary-amd64
+          # Generate Packages files with all versions
+          dpkg-scanpackages -m pool /dev/null \
+            | gzip -9c > dists/stable/main/binary-amd64/Packages.gz
+          dpkg-scanpackages -m pool /dev/null > dists/stable/main/binary-amd64/Packages
+
+          mkdir -p dists/stable
+          cat > dists/stable/Release << EOF
+          Origin: dawn-collective
+          Label: Dawn Collective
+          Suite: stable
+          Codename: stable
+          Version: latest
+          Architectures: amd64
+          Components: main
+          Description: Dawn Collective Debian Repository
+          Date: $(date -Ru)
+          EOF
+          apt-ftparchive release dists/stable >> dists/stable/Release
+
+      - name: Import GPG key
+        run: |
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
+      - name: Generate Release.gpg and InRelease
+        working-directory: packages
+        run: |
+          gpg --batch --yes --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" \
+            --armor --detach-sign --output dists/stable/Release.gpg dists/stable/Release
+          gpg --batch --yes --pinentry-mode loopback --passphrase "$GPG_PASSPHRASE" \
+            --clearsign --output dists/stable/InRelease dists/stable/Release
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Commit & Push to main
+        working-directory: packages
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add .
+          git commit -m "Publish haveno-dawn@${{ github.event.inputs.release_tag }} .deb"
+          git push origin main --force
