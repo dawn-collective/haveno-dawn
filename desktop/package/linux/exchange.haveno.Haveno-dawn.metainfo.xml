@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-  <id>exchange.haveno.Haveno</id>
+  <id>exchange.haveno.Haveno-dawn</id>
   <!-- <icon type="stock">exchange.haveno.Haveno</icon> -->
-  <launchable type="desktop-id">exchange.haveno.Haveno.desktop</launchable>
-  <name>Haveno</name>
+  <launchable type="desktop-id">exchange.haveno.Haveno-dawn.desktop</launchable>
+  <name>Haveno-dawn</name>
   <summary>Decentralized P2P exchange built on Monero and Tor</summary>
   <categories>
     <category>Office</category>

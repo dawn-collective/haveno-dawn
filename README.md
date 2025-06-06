@@ -1,83 +1,38 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/haveno-dex/haveno-meta/721e52919b28b44d12b6e1e5dac57265f1c05cda/logo/haveno_logo_landscape.svg" alt="Haveno logo">
 
-  ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/haveno-dex/haveno/build.yml?branch=master)
-  [![GitHub issues with bounty](https://img.shields.io/github/issues-search/haveno-dex/haveno?color=%23fef2c0&label=Issues%20with%20bounties&query=is%3Aopen+is%3Aissue+label%3A%F0%9F%92%B0bounty)](https://github.com/haveno-dex/haveno/issues?q=is%3Aopen+is%3Aissue+label%3A%F0%9F%92%B0bounty)
-  [![Twitter Follow](https://img.shields.io/twitter/follow/HavenoDEX?style=social)](https://twitter.com/havenodex)
-  [![Matrix rooms](https://img.shields.io/badge/Matrix%20room-%23haveno-blue)](https://matrix.to/#/#haveno:monero.social) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://github.com/haveno-dex/.github/blob/master/CODE_OF_CONDUCT.md)
+  ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dawn-collective/haveno-dawn/build.yml?branch=master)
+  [![GitHub issues](https://img.shields.io/github/issues-search/dawn-collective/haveno-dawn?color=%23fef2c0&label=Open%20issues&query=is%3Aopen+is%3Aissue)](https://github.com/dawn-collective/haveno-dawn/issues?q=is%3Aopen+is%3Aissue)
+  [![SimpleX Group](https://img.shields.io/badge/SimpleX%20Group-blue)](https://simplex.chat/contact#/?v=2-7&smp=smp%3A%2F%2Fhejn2gVIqNU6xjtGM3OwQeuk8ZEbDXVJXAlnSBJBWUA%3D%40smp16.simplex.im%2F2_TfwmTOjow1yy24X-hDHMxst7MHh7dK%23%2F%3Fv%3D1-4%26dh%3DMCowBQYDK2VuAyEA89_HDl28EmJQmo1p_oxesZ7evz5lYwTzVTK4qWjmmEU%253D%26q%3Dc%26srv%3Dp3ktngodzi6qrf7w64mmde3syuzrv57y55hxabqcq3l5p6oi7yzze6qd.onion&data=%7B%22groupLinkId%22%3A%22fO3lb4jQthjFcPetUVslww%3D%3D%22%7D
+  )
 </div>
 
-## What is Haveno?
+## About Haveno-dawn
 
-Haveno (pronounced ha‧ve‧no) is an open source platform to exchange [Monero](https://getmonero.org) for fiat currencies like USD, EUR, and GBP or other cryptocurrencies like BTC, ETH, and BCH.
+Dawn is a collective dedicated to the principles of anonymity, autonomy, and decentralization. We envision a society free from censorship, corporate overreach, and government control, where technology serves all equally.
 
-Main features:
+Decentralization is not just an idea, it is an ideal to be actively pursued. Our mission is to give back control to the individual, starting with financial sovereignty.
 
-- Communications are routed through **Tor**, to preserve your privacy.
+Haveno is an open-source, decentralized exchange platform built around Monero as a base currency, with networks hosted and maintained by the community. Our network, Haveno-dawn, is an independent instance of Haveno hosted by the collective. By launching Haveno-dawn, we aim to build trust and strengthen the resilience of the Monero ecosystem, ensuring that no single network becomes a point of failure or control.
 
-- Trades are **peer-to-peer**: trades on Haveno happen between people only, there is no central authority.
+> This is not the main Haveno repository. For information on the core Haveno project, please visit haveno-dex/haveno.
 
-- Trades are **non-custodial**: Haveno supports arbitration in case something goes wrong during the trade, but arbitrators never have access to your funds.
+## Characteristics of the Dawn network
 
-- There is **No token**, because it's not needed. Transactions between traders are secured by non-custodial multisignature transactions on the Monero network.
+- Minimum trade and deposit amount reduced to **0.02 XMR** (default: 0.1 XMR)
+- Minimum deposit percentage reduced to **5%** (default: 15%)
+- Fees set to **0.1% maker** and **0.5% taker** to cover server cost and maintain a self-sustaining network
+- Custom installation paths for side-by-side use with other networks
+- Reliable infrastructure for maximum availability
 
-See the [FAQ on our website](https://haveno.exchange/faq/) for more information.
+## Installation
 
-## Haveno Demo
+Haveno-dawn can be installed by [downloading the latest release](https://github.com/dawn-collective/haveno-dawn/releases) for your operating system.
 
-https://github.com/user-attachments/assets/eb6b3af0-78ce-46a7-bfa1-2aacd8649d47
-
-## Installing Haveno
-
-Haveno can be installed on Linux, macOS, and Windows by using a third party installer and network.
-
-> [!note]
-> The official Haveno repository does not support making real trades directly.
-> 
-> To make real trades with Haveno, first find a third party network, and then use their installer or build their repository. We do not endorse any networks at this time.
-
-A test network is also available for users to make test trades using Monero's stagenet. See the [instructions](https://github.com/haveno-dex/haveno/blob/master/docs/installing.md) to build Haveno and connect to the test network.
-
-Alternatively, you can [create your own mainnet network](https://github.com/haveno-dex/haveno/blob/master/docs/create-mainnet.md).
-
-Note that Haveno is being actively developed. If you find issues or bugs, please let us know.
-
-## Main repositories
-
-- **[haveno](https://github.com/haveno-dex/haveno)** - This repository. The core of Haveno.
-- **[haveno-ts](https://github.com/haveno-dex/haveno-ts)** - TypeScript library for using Haveno.
-- **[haveno-ui](https://github.com/haveno-dex/haveno-ui)** - A new user interface (WIP).
-- **[haveno-meta](https://github.com/haveno-dex/haveno-meta)** - For project-wide discussions and proposals.
-
-If you wish to help, take a look at the repositories above and look for open issues. We run a bounty program to incentivize development. See [Bounties](#bounties).
-
-## Keep in touch and help out!
-
-Haveno is a community-driven project. For it to be successful it's fundamental to have the support and help of the community. Join the community rooms on our Matrix server:
-
-- General discussions: **Haveno** ([#haveno:monero.social](https://matrix.to/#/#haveno:monero.social)) relayed on IRC/Libera (`#haveno`)
-- Development discussions: **Haveno Development** ([#haveno-development:monero.social](https://matrix.to/#/#haveno-development:monero.social)) relayed on IRC/Libera (`#haveno-development`)
-
-Email: contact@haveno.exchange
-Website: [haveno.exchange](https://haveno.exchange)
-
-## Contributing to Haveno
-
-See the [developer guide](docs/developer-guide.md) to get started developing for Haveno.
-
-See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for our styling guides.
-
-If you are not able to contribute code and want to contribute development resources, [donations](#support-and-sponsorships) fund development bounties.
-
-## Bounties
-
-To incentivize development and reward contributors, we adopt a simple bounty system. Contributors may be awarded bounties after completing a task (resolving an issue). Take a look at the [issues labeled '💰bounty'](https://github.com/haveno-dex/haveno/issues?q=is%3Aopen+is%3Aissue+label%3A%F0%9F%92%B0bounty) in the main `haveno` repository. [Details and conditions for receiving a bounty](docs/bounties.md).
+You can also compile your own binaries [following these instructions](https://github.com/dawn-collective/haveno-dawn/blob/master/docs/installing.md).
 
 ## Support
 
-To bring Haveno to life, we need resources. If you have the possibility, please consider donating to the project:
+If you encounter any bug related to our network or our customization, please open an issue.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/haveno-dex/haveno/master/media/donate_monero.png" alt="Donate Monero" width="115" height="115"><br>
-  <code>47fo8N5m2VVW4uojadGQVJ34LFR9yXwDrZDRugjvVSjcTWV2WFSoc1XfNpHmxwmVtfNY9wMBch6259G6BXXFmhU49YG1zfB</code>
-</p>
+For donations, please [donate to the Haveno project maintainers directly](https://github.com/haveno-dex/haveno?tab=readme-ov-file#support). If you really want to donate to Haveno-dawn directly, get in touch.

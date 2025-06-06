@@ -1,14 +1,14 @@
 [Desktop Entry]
 Comment=A decentralized, Tor-based, P2P Monero exchange network.
-Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; bin/Haveno %u"
+Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; bin/Haveno-dawn %u"
 GenericName[en_US]=Monero Exchange
 GenericName=Monero Exchange
-Icon=exchange.haveno.Haveno
+Icon=exchange.haveno.Haveno-dawn
 Categories=Office;Finance;Java;P2P;
-Name[en_US]=Haveno
-Name=Haveno
+Name[en_US]=Haveno-dawn
+Name=Haveno-dawn
 Terminal=false
 Type=Application
 MimeType=
-X-AppImage-Name=Haveno
-StartupWMClass=Haveno
+X-AppImage-Name=Haveno-dawn
+StartupWMClass=Haveno-dawn

@@ -253,7 +253,7 @@ task packageInstallers {
 
         //String appDescription = 'A decentralized monero exchange network.'
         String appCopyright = '© 2024 Haveno'
-        String appNameAndVendor = 'Haveno'
+        String appNameAndVendor = 'Haveno-dawn'
 
         String commonOpts = new String(
                 // Generic options
@@ -278,7 +278,7 @@ task packageInstallers {
                         " --java-options --add-opens=java.base/java.lang.reflect=ALL-UNNAMED" +
                         " --java-options --add-opens=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED" +
                         " --java-options -Djava.net.preferIPv4Stack=true" +
-                        " --arguments --baseCurrencyNetwork=XMR_STAGENET"
+                        " --arguments --baseCurrencyNetwork=XMR_MAINNET"
                 // Warning: this will cause guice reflection exceptions and lead to issues with the guice internal cache
                 // resulting in the UI not loading
 //              " --java-options -Djdk.module.illegalAccess=deny" +
@@ -309,7 +309,7 @@ task packageInstallers {
                     " --icon ${project(':desktop').projectDir}/package/linux/icon.png" +
                             // This defines the first part of the resulting packages (the application name)
                             // deb requires lowercase letters, therefore the application name is written in lowercase
-                            " --linux-package-name haveno" +
+                            " --linux-package-name haveno-dawn" +
 
                             // This represents the linux package version (revision)
                             // By convention, this is part of the deb/rpm package names, in addition to the software version
@@ -349,7 +349,7 @@ task packageInstallers {
 
             String osKey = getJavaBinariesDownloadURLs.property('osKey')
 
-            File appDir = new File("${jpackageTempDir}/Haveno")
+            File appDir = new File(jpackageTempDir, appNameAndVendor)
             File templateAppDir = new File("${project(':desktop').projectDir}/package/linux/Haveno.AppDir")
             File jpackDir = appDir
 
@@ -376,11 +376,11 @@ task packageInstallers {
 
                 project.exec {
                     workingDir appDir
-                    commandLine 'ln', '-s', 'bin/Haveno', 'AppRun'
+                    commandLine 'ln', '-s', "bin/${appNameAndVendor}", 'AppRun'
                 }
 
                 project.exec {
-                    commandLine "${AppImageToolBinary}", appDir, "${binariesFolderPath}/haveno_${appVersion}.AppImage"
+                    commandLine "${AppImageToolBinary}", appDir, "${binariesFolderPath}/${appNameAndVendor.toLowerCase()}_${appVersion}.AppImage"
                 }
             } else {
                 println "Your platform does not support AppImageTool ${AppImageToolVersion}"
@@ -399,11 +399,11 @@ task packageInstallers {
 
 
             // Define Flatpak-related properties
-            String flatpakManifestFile = 'package/linux/exchange.haveno.Haveno.yml'
+            String flatpakManifestFile = 'package/linux/exchange.haveno.Haveno-dawn.yml'
             String linuxDir = 'package/linux'
             String flatpakOutputDir = 'package/linux/build'
             String flatpakExportDir = "${binariesFolderPath}/fpexport"
-            String flatpakBundleFile = "${binariesFolderPath}/haveno.flatpak"
+            String flatpakBundleFile = "${binariesFolderPath}/haveno-dawn.flatpak"
 
             // Read the default app name from the HavenoExecutable.java file
             def filer = file('../core/src/main/java/haveno/core/app/HavenoExecutable.java')
@@ -419,9 +419,9 @@ task packageInstallers {
             // Copy the manifest to a new tmp one in the same place
             // and add a --filesystem=.local/share/${name} to the flatpak manifest
             def manifest = file(flatpakManifestFile)
-            def newManifest = file('exchange.haveno.Haveno.yaml')
-            newManifest.write(manifest.text.replace("- --share=network", "- --share=network\n  - --filesystem=~/.local/share/${defaultAppName}:create"))
-            flatpakManifestFile = 'exchange.haveno.Haveno.yaml'
+            def newManifest = file('exchange.haveno.Haveno-dawn.yaml')
+            newManifest.write(manifest.text.replace("- --share=network", "- --share=network\n  - --filesystem=~/.local/share/${appNameAndVendor}:create"))
+            flatpakManifestFile = 'exchange.haveno.Haveno-dawn.yaml'
 
             // Command to build the Flatpak
             exec {
@@ -435,7 +435,7 @@ task packageInstallers {
 
             // Command to create the Flatpak bundle
             exec {
-                commandLine 'flatpak', 'build-bundle', flatpakExportDir, flatpakBundleFile, 'exchange.haveno.Haveno', '--runtime-repo=https://flathub.org/repo/flathub.flatpakrepo'
+                commandLine 'flatpak', 'build-bundle', flatpakExportDir, flatpakBundleFile, 'exchange.haveno.Haveno-dawn', '--runtime-repo=https://flathub.org/repo/flathub.flatpakrepo'
             }
 
             // delete the flatpak build directory
