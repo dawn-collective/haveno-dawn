@@ -37,8 +37,8 @@ Haveno-dawn can be installed by [downloading the latest release](https://github.
 #### Option 2: Install via our Debian package repository
 
 ```bash
-wget -O- https://raw.githubusercontent.com/dawn-collective/repository/gh-pages/public.key | sudo gpg --dearmor -o /usr/share/keyrings/dawn-collective-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/dawn-collective-archive-keyring.gpg] https://dawn-collective.github.io/repository stable main" | sudo tee /etc/apt/sources.list.d/dawn-collective.list
+wget -O- https://raw.githubusercontent.com/dawn-collective/packages/master/public.key | sudo gpg --dearmor -o /usr/share/keyrings/dawn-collective-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/dawn-collective-archive-keyring.gpg] https://dawn-collective.github.io/packages stable main" | sudo tee /etc/apt/sources.list.d/dawn-collective.list
 sudo apt update
 sudo apt install haveno-dawn -y
 ```
